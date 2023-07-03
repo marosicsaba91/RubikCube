@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RubicUI : MonoBehaviour
+public class RubikUI : MonoBehaviour
 {
-	[SerializeField] RubicCube rubicCube;
+	[SerializeField] RubikCube rubikCube;
 	[SerializeField] Button solveButton;
 	[SerializeField] Button scrambleButton;
-	[SerializeField] RubicsDance dance;
+	[SerializeField] RubikDance dance;
 
 	void Start()
     {
@@ -16,12 +16,12 @@ public class RubicUI : MonoBehaviour
 	}
 	void Solve()
 	{
-		rubicCube.Solve();
+		rubikCube.Solve();
 		dance.StartDance();
 	}
 	void Scramble()
 	{
-		rubicCube.Scramble();
+		rubikCube.Scramble();
 		dance.StartDance();
 	}
 }

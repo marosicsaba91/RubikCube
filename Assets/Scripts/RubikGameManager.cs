@@ -1,6 +1,6 @@
 using UnityEngine;
 
-class RubicGameManager : MonoBehaviour 
+class RubikGameManager : MonoBehaviour 
 {
 	void Update()
 	{

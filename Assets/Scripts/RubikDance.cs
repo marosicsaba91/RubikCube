@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class RubicsDance : MonoBehaviour
+public class RubikDance : MonoBehaviour
 {
-	[SerializeField] RubicCube rubicCube;
+	[SerializeField] RubikCube rubikCube;
 	[SerializeField] float subCubeDuration = 0.1f;
 	[SerializeField] float subCubeDanceDuration = 1.5f;
 	[SerializeField] float fullDistance = 0.5f;
@@ -17,7 +17,7 @@ public class RubicsDance : MonoBehaviour
 	void Start()
 	{
 		if (danceOnSolved)
-			rubicCube.OnSolved += StartDance;
+			rubikCube.OnSolved += StartDance;
 
 		if (danceOnStart)
 			StartDance();
@@ -27,22 +27,22 @@ public class RubicsDance : MonoBehaviour
 
 	IEnumerator Dance()
 	{
-		if (!rubicCube.enabled)
+		if (!rubikCube.enabled)
 			yield break;
-		rubicCube.enabled = false;
+		rubikCube.enabled = false;
 
 		float wait = 0;
-		foreach (RubicSubBlock subBlock in rubicCube.subBlocks)
+		foreach (RubikSubBlock subBlock in rubikCube.SubBlocks)
 		{
 			StartCoroutine(Dance(subBlock, wait));
 			wait += subCubeDuration;
 		}
 
 		yield return new WaitForSeconds(subCubeDanceDuration + wait);
-		rubicCube.enabled = true;
+		rubikCube.enabled = true;
 	}
 
-	IEnumerator Dance(RubicSubBlock subBlock, float waitTime)
+	IEnumerator Dance(RubikSubBlock subBlock, float waitTime)
 	{
 		float time = 0;
 		Vector3 startPosition = subBlock.transform.localPosition;
@@ -66,7 +66,7 @@ public class RubicsDance : MonoBehaviour
 		subBlock.transform.localScale = startScale;
 	}
 
-	private void SetPose(RubicSubBlock subBlock, float time, Vector3 startPosition, Quaternion startRotation, Vector3 startScale, Vector3 direction)
+	private void SetPose(RubikSubBlock subBlock, float time, Vector3 startPosition, Quaternion startRotation, Vector3 startScale, Vector3 direction)
 	{
 		float distance = fullDistance * distanceOverTime.Evaluate(time);
 		float rotationAngle = 360 * rotationOverTime.Evaluate(time);

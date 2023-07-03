@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-class RubicCube : MonoBehaviour
+class RubikCube : MonoBehaviour
 {
 	[SerializeField] CubeRaycaster raycaster;
 	[SerializeField] Transform angleRotator;
@@ -12,8 +12,8 @@ class RubicCube : MonoBehaviour
 
 	public event Action OnSolved;
 
-	public RubicSubBlock[] subBlocks;
-	public Pose[] defaultPoses;
+	public RubikSubBlock[] SubBlocks { get; private set; }
+	Pose[] defaultPoses;
 
 	bool autoRotate = false;
 	bool manualRotate = false;
@@ -21,11 +21,11 @@ class RubicCube : MonoBehaviour
 
 	void Awake()
 	{
-		subBlocks = GetComponentsInChildren<RubicSubBlock>();
-		defaultPoses = new Pose[subBlocks.Length];
-		for (int i = 0; i < subBlocks.Length; i++)
+		SubBlocks = GetComponentsInChildren<RubikSubBlock>();
+		defaultPoses = new Pose[SubBlocks.Length];
+		for (int i = 0; i < SubBlocks.Length; i++)
 		{
-			Transform subBlock = subBlocks[i].transform;
+			Transform subBlock = SubBlocks[i].transform;
 			defaultPoses[i] = new Pose(subBlock.position, subBlock.rotation);
 		}
 
@@ -44,7 +44,7 @@ class RubicCube : MonoBehaviour
 		manualRotate = true;
 		angleRotator.rotation = Quaternion.identity;
 
-		Vector3Int clicked = raycaster.GetClickedObject().GetComponentInParent<RubicSubBlock>().CurrentLocalIndex;
+		Vector3Int clicked = raycaster.GetClickedObject().GetComponentInParent<RubikSubBlock>().CurrentLocalIndex;
 		Vector3 axis = raycaster.RotationAxis;
 
 		SetBlocksParent(clicked, axis);
@@ -62,7 +62,7 @@ class RubicCube : MonoBehaviour
 		else if (localAxis.z == 0)
 			center.z = 0;
 
-		foreach (RubicSubBlock subCube in subBlocks)
+		foreach (RubikSubBlock subCube in SubBlocks)
 		{
 			if (IsSubCubeOnAxis(center, localAxis, subCube.CurrentLocalIndex))
 				selected.Add(subCube.transform);
@@ -101,7 +101,7 @@ class RubicCube : MonoBehaviour
 	{
 		ResetBlocksParent();
 
-		if (TestRubicCube())
+		if (TestRubikCube())
 			OnSolved?.Invoke();
 	}
 
@@ -123,25 +123,25 @@ class RubicCube : MonoBehaviour
 		}
 	}
 
-	bool TestRubicCube()
+	bool TestRubikCube()
 	{
 		foreach (Direction dir in DirectionHelper.allDirections)
 		{
-			if (!TestRubicCubeSide(dir))
+			if (!TestRubikCubeSide(dir))
 				return false;
 		}
 		return true;
 	}
 
-	bool TestRubicCubeSide(Direction dir)
+	bool TestRubikCubeSide(Direction dir)
 	{
-		RubicColor color = RubicColor.None;
-		foreach (RubicSubBlock subCube in subBlocks)
+		RubikColor color = RubikColor.None;
+		foreach (RubikSubBlock subCube in SubBlocks)
 		{
-			RubicColor subCubeColor = subCube.GetColorByGlobalDirection(dir);
-			if (color == RubicColor.None)
+			RubikColor subCubeColor = subCube.GetColorByGlobalDirection(dir);
+			if (color == RubikColor.None)
 				color = subCubeColor;
-			else if (subCubeColor == RubicColor.None)
+			else if (subCubeColor == RubikColor.None)
 				continue;
 			else if (color != subCubeColor)
 				return false;
@@ -152,16 +152,16 @@ class RubicCube : MonoBehaviour
 
 	public void Solve() 
 	{
-		for (int i = 0; i < subBlocks.Length; i++)
+		for (int i = 0; i < SubBlocks.Length; i++)
 		{
-			Transform subBlock = subBlocks[i].transform;
+			Transform subBlock = SubBlocks[i].transform;
 			subBlock.SetPositionAndRotation(defaultPoses[i].position, defaultPoses[i].rotation);
 		}
 	}
 
 	readonly Vector3[] allArises = new Vector3[] { Vector3.up, Vector3.right, Vector3.forward };
 
-	public Pose[] scramblesPoses;
+	Pose[] scramblesPoses;
 
 	public void Scramble()
 	{
@@ -179,10 +179,10 @@ class RubicCube : MonoBehaviour
 			ResetBlocksParent();
 		}
 
-		scramblesPoses = new Pose[subBlocks.Length];
-		for (int i = 0; i < subBlocks.Length; i++)
+		scramblesPoses = new Pose[SubBlocks.Length];
+		for (int i = 0; i < SubBlocks.Length; i++)
 		{
-			Transform subBlock = subBlocks[i].transform;
+			Transform subBlock = SubBlocks[i].transform;
 			scramblesPoses[i] = new Pose(subBlock.position, subBlock.rotation);
 		}
 	}

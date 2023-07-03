@@ -6,11 +6,11 @@ public class SolveEffect : MonoBehaviour
 	[SerializeField] ParticleSystem particles;
 	[SerializeField] AudioSource audioSource;
 
-	[SerializeField] RubicCube rubicCube;
+	[SerializeField] RubikCube rubikCube;
 
 	private void Awake()
 	{
-		rubicCube.OnSolved += Play;		
+		rubikCube.OnSolved += Play;		
 	}
 
 	public void Play()

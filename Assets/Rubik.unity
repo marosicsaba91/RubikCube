@@ -398,7 +398,7 @@ MonoBehaviour:
   animator: {fileID: 8052748}
   particles: {fileID: 0}
   audioSource: {fileID: 0}
-  rubicCube: {fileID: 1303432536}
+  rubikCube: {fileID: 1303432539}
 --- !u!95 &8052748
 Animator:
   serializedVersion: 5
@@ -1758,7 +1758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeda1832fe2a17e4086325dbea68ee17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rubicCube: {fileID: 1303432536}
+  rubikCube: {fileID: 1303432539}
   solveButton: {fileID: 2029358642}
   scrambleButton: {fileID: 349750994}
   dance: {fileID: 167115906}
@@ -1774,7 +1774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a03dbd4dc7ef0d4e8e5f517c5e656e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rubicCube: {fileID: 1303432536}
+  rubikCube: {fileID: 1303432539}
   subCubeDuration: 0
   subCubeDanceDuration: 2
   fullDistance: 1
@@ -6328,7 +6328,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   particles: {fileID: 0}
   audioSource: {fileID: 710794343}
-  rubicCube: {fileID: 1303432536}
+  rubikCube: {fileID: 1303432539}
 --- !u!114 &710794345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11335,7 +11335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1303432533}
-  - component: {fileID: 1303432536}
+  - component: {fileID: 1303432539}
   - component: {fileID: 1303432537}
   - component: {fileID: 1303432538}
   m_Layer: 7
@@ -11388,25 +11388,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1303432536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303432532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49119f132e25aeb48b0130ee9ae87175, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raycaster: {fileID: 1303432537}
-  angleRotator: {fileID: 97213315}
-  autoRotateTime: 0.05
-  scrambleCount: 10
-  subBlocks: []
-  defaultPoses: []
-  scramblesPoses: []
 --- !u!114 &1303432537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11435,7 +11416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a03dbd4dc7ef0d4e8e5f517c5e656e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rubicCube: {fileID: 1303432536}
+  rubikCube: {fileID: 1303432539}
   subCubeDuration: 0.1
   subCubeDanceDuration: 3
   fullDistance: 20
@@ -11603,6 +11584,22 @@ MonoBehaviour:
     m_RotationOrder: 4
   danceOnStart: 1
   danceOnSolved: 0
+--- !u!114 &1303432539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303432532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d6b60edf8348c41b62f928a9e8b222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycaster: {fileID: 1303432537}
+  angleRotator: {fileID: 97213315}
+  autoRotateTime: 0.075
+  scrambleCount: 10
 --- !u!1 &1306458969
 GameObject:
   m_ObjectHideFlags: 0
@@ -13792,7 +13789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a03dbd4dc7ef0d4e8e5f517c5e656e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rubicCube: {fileID: 1303432536}
+  rubikCube: {fileID: 1303432539}
   subCubeDuration: 0.007
   subCubeDanceDuration: 2
   fullDistance: 0.7
@@ -21823,4 +21820,4 @@ MonoBehaviour:
   animator: {fileID: 0}
   particles: {fileID: 1605611036451849945}
   audioSource: {fileID: 0}
-  rubicCube: {fileID: 1303432536}
+  rubikCube: {fileID: 1303432539}

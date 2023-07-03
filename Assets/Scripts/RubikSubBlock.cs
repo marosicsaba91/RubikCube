@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-class RubicSubBlock : MonoBehaviour
+class RubikSubBlock : MonoBehaviour
 {
-	[SerializeField] RubicColor upColor;
-	[SerializeField] RubicColor downColor;
-	[SerializeField] RubicColor leftColor;
-	[SerializeField] RubicColor rightColor;
-	[SerializeField] RubicColor frontColor;
-	[SerializeField] RubicColor backColor;
+	[SerializeField] RubikColor upColor;
+	[SerializeField] RubikColor downColor;
+	[SerializeField] RubikColor leftColor;
+	[SerializeField] RubikColor rightColor;
+	[SerializeField] RubikColor frontColor;
+	[SerializeField] RubikColor backColor;
 
 	[SerializeField] Vector3Int startIndex;
 
@@ -20,8 +20,8 @@ class RubicSubBlock : MonoBehaviour
 		{
 			Transform child = transform.GetChild(i);
 			string name = child.name;
-			RubicColor color = RubicColorHelper.FromName(name);
-			if (color == RubicColor.None)
+			RubikColor color = RubikColorHelper.FromName(name);
+			if (color == RubikColor.None)
 				continue;
 
 
@@ -43,7 +43,7 @@ class RubicSubBlock : MonoBehaviour
 		}		
 	}
 
-	public RubicColor GetColorByGlobalDirection(Direction globalDirection)
+	public RubikColor GetColorByGlobalDirection(Direction globalDirection)
 	{
 		Vector3 worldVector = DirectionHelper.ToVector(globalDirection);
 		Vector3 localVector = transform.InverseTransformDirection(worldVector);
@@ -51,7 +51,7 @@ class RubicSubBlock : MonoBehaviour
 		return GetColorByLocalDirection(localDirection);
 	}
 
-	RubicColor GetColorByLocalDirection(Direction localDirection) 
+	RubikColor GetColorByLocalDirection(Direction localDirection) 
 	{
 		switch(localDirection)
 		{
@@ -69,7 +69,7 @@ class RubicSubBlock : MonoBehaviour
 				return downColor;
 
 			default:
-				return RubicColor.None;
+				return RubikColor.None;
 		}
 	}
 }
